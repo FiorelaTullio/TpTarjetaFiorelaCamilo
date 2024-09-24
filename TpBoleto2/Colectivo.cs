@@ -7,12 +7,14 @@ namespace TpBoleto2
 
         public Boleto pagarCon (Tarjeta tarjeta)
         {
-            if (tarjeta.Saldo < Boleto.Precio)
+            if (tarjeta.Cobrar(Boleto.Precio))
+            {
+                return new Boleto();
+            }
+            else
             {
                 return null;
             }
-            tarjeta.Saldo -= Boleto.Precio;
-            return new Boleto();
         }
     }
 }

@@ -103,3 +103,4 @@ D:\Cosas_Compu_Vieja\ACosas del Politécnico\6 año IPS\C#\TpBoleto2\TestTPBolet
 D:\Cosas_Compu_Vieja\ACosas del Politécnico\6 año IPS\C#\TpBoleto2\TestTPBoleto2\obj\Debug\net8.0\TestTPBoleto2.pdb
 D:\Cosas_Compu_Vieja\ACosas del Politécnico\6 año IPS\C#\TpBoleto2\TestTPBoleto2\obj\Debug\net8.0\TestTPBoleto2.genruntimeconfig.cache
 D:\Cosas_Compu_Vieja\ACosas del Politécnico\6 año IPS\C#\TpBoleto2\TestTPBoleto2\obj\Debug\net8.0\ref\TestTPBoleto2.dll
+D:\Cosas_Compu_Vieja\ACosas del Politécnico\6 año IPS\C#\TpBoleto2\TestTPBoleto2\obj\Debug\net8.0\TestTPBoleto2.sourcelink.json
