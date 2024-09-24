@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("TpBoleto2")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("TestTPBoleto2")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+237205532f7170b198b73430112b65bc9c74417a")]
-[assembly: System.Reflection.AssemblyProductAttribute("TpBoleto2")]
-[assembly: System.Reflection.AssemblyTitleAttribute("TpBoleto2")]
+[assembly: System.Reflection.AssemblyProductAttribute("TestTPBoleto2")]
+[assembly: System.Reflection.AssemblyTitleAttribute("TestTPBoleto2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
