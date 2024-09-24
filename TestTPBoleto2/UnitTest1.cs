@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using TpBoleto2;
 
 namespace TestTPBoleto2
@@ -29,7 +30,7 @@ namespace TestTPBoleto2
         [Test]
         [TestCase(1000)]
         [TestCase(1500)]
-        public void PuedePagarTest(float cargaInicial)
+        public void PuedePagarTest(double cargaInicial)
         {
             Tarjeta tarjeta = new Tarjeta();
             tarjeta.Saldo = cargaInicial;
@@ -40,12 +41,28 @@ namespace TestTPBoleto2
         [Test]
         [TestCase(0)]
         [TestCase(-500)]
-        public void NoPuedePagar(float cargaInicial)
+        public void NoPuedePagar(double cargaInicial)
         {
             Tarjeta tarjeta = new Tarjeta();
             tarjeta.Saldo = cargaInicial;
             Colectivo colectivo = new Colectivo();
             Assert.IsNull(colectivo.pagarCon(tarjeta));
+        }
+
+        [Test]
+        [TestCase(460)]
+        [TestCase(500)]
+        [TestCase(700)]
+        [TestCase(1000)]
+        public void SaldoAdeudado(float cargaInicial)
+        {
+            Tarjeta tarjeta = new Tarjeta();
+            tarjeta.Saldo = cargaInicial;
+            double saldoInicial = tarjeta.Saldo;
+            Colectivo colectivo = new Colectivo();
+            colectivo.pagarCon(tarjeta);
+            Assert.That(tarjeta.Saldo, Is.EqualTo(saldoInicial - Boleto.Precio));
+
         }
 
 
