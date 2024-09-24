@@ -13,12 +13,19 @@ namespace TpBoleto2
     public class Tarjeta
     {
         public static double[] CargasValidas = [2000,3000,4000,5000,6000,7000,8000,9000];
+        public static double MaxSaldoNegativo = -480f; 
         const double SaldoMaximo = 9900f;
-        public double Saldo { set; get; }
+        protected double saldo;
+
+        public double Saldo
+        {
+            get { return saldo + MaxSaldoNegativo; }
+            set { saldo = value - MaxSaldoNegativo; }
+        }
 
         public Tarjeta()
         {
-            this.Saldo = 0;
+            this.saldo = 0;
         }
 
         public bool Cargar(double carga)
@@ -32,6 +39,17 @@ namespace TpBoleto2
                 }
             }
             return false;
+        }
+
+        // Especial para viajes plus
+        public virtual bool Cobrar(double precio)
+        {
+            if (saldo < precio)
+            {
+                return false;
+            }
+            saldo -= precio;
+            return true;
         }
     }
 }
