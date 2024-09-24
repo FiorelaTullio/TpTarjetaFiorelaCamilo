@@ -15,7 +15,7 @@ namespace TpBoleto2
         public static double[] CargasValidas = [2000,3000,4000,5000,6000,7000,8000,9000];
         public static double MaxSaldoNegativo = -480f; 
         const double SaldoMaximo = 9900f;
-        private double saldo;
+        protected double saldo;
 
         public double Saldo
         {
@@ -42,7 +42,7 @@ namespace TpBoleto2
         }
 
         // Especial para viajes plus
-        public bool Cobrar(double precio)
+        public virtual bool Cobrar(double precio)
         {
             if (saldo < precio)
             {
