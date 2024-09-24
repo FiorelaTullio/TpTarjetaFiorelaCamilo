@@ -65,6 +65,38 @@ namespace TestTPBoleto2
 
         }
 
+        [Test]
+        [TestCase(460)]
+        [TestCase(500)]
+        [TestCase(700)]
+        [TestCase(1000)]
+        public void MedioSaldoTest(float cargaInicial)
+        {
+            TarjetaFranquiciaMedia tarjeta = new TarjetaFranquiciaMedia();
+            tarjeta.Saldo = cargaInicial;
+            double saldoInicial = tarjeta.Saldo;
+            Colectivo colectivo = new Colectivo();
+            colectivo.pagarCon(tarjeta);
+            Assert.That(tarjeta.Saldo, Is.EqualTo(saldoInicial - Boleto.Precio / 2));
+
+        }
+
+        [Test]
+        [TestCase(0)]
+        [TestCase(500)]
+        [TestCase(700)]
+        [TestCase(1000)]
+        public void CompletoSaldoTest(float cargaInicial)
+        {
+            TarjetaFranquciaCompleta tarjeta = new TarjetaFranquciaCompleta();
+            tarjeta.Saldo = cargaInicial;
+            double saldoInicial = tarjeta.Saldo;
+            Colectivo colectivo = new Colectivo();
+            Assert.NotNull(colectivo.pagarCon(tarjeta));
+
+        }
+
+
 
         [Test]
         public void Test1()
