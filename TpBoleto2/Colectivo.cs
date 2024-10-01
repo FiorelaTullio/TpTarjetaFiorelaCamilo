@@ -5,11 +5,18 @@ namespace TpBoleto2
     public class Colectivo
     {
 
-        public Boleto pagarCon (Tarjeta tarjeta)
+        public string Linea { get; }
+        
+        public Colectivo(string linea) 
         {
-            if (tarjeta.Cobrar(Boleto.Precio))
+            Linea = linea;
+        }
+
+        public Boleto? pagarCon (Tarjeta tarjeta)
+        {
+            if (tarjeta.Cobrar(Boleto.Precio, out double cobrado))
             {
-                return new Boleto();
+                return new Boleto(tarjeta, this, cobrado);
             }
             else
             {
