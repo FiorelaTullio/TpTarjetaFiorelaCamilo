@@ -14,10 +14,10 @@ namespace TestTPBoleto2
         [SetUp]
         public void Setup()
         {
-            tarjeta = new Tarjeta(4);
-            tarjetaCompleta = new TarjetaFranquciaCompleta(2);
-            tarjetaMedia = new TarjetaFranquiciaMedia(3);
-            colectivo = new Colectivo("122 Roja");
+            tarjeta = new Tarjeta();
+            tarjetaCompleta = new TarjetaFranquciaCompleta();
+            tarjetaMedia = new TarjetaFranquiciaMedia();
+            colectivo = new Colectivo();
         }
 
         [Test]
@@ -93,12 +93,25 @@ namespace TestTPBoleto2
             Assert.NotNull(colectivo.pagarCon(tarjetaCompleta));
         }
 
+        [Test]
         public void IntervaloMedioBoletoTest()
         {
             tarjetaMedia.Cargar(5000);
             Boleto boleto1 = colectivo.pagarCon(tarjetaMedia);
             Boleto boleto2 = colectivo.pagarCon(tarjetaMedia);
             Assert.Null(boleto2);
+        }
+
+        [Test]
+        public void MedioBoletoCantidadTest()
+        {
+            tarjetaMedia.Cargar(2000);
+            double cargaAntes = tarjetaMedia.Saldo;
+            tarjetaMedia.BoletosSacadosHoy = (DateTime.Today, TarjetaFranquiciaMedia.MaximosBoletosPorDia);
+            Boleto? boleto = colectivo.pagarCon(tarjetaMedia);
+            double cargaDespues = tarjetaMedia.Saldo;
+            Assert.NotNull(boleto);
+            Assert.That(cargaAntes - cargaDespues, Is.EqualTo(Boleto.Precio));
         }
 
 
