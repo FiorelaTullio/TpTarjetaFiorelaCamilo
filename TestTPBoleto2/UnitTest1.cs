@@ -5,11 +5,19 @@ namespace TestTPBoleto2
 {
     public class TarjetaTest
     {
-        Tarjeta tarj;
+        Tarjeta tarjeta;
+        TarjetaFranquciaCompleta tarjetaCompleta;
+        TarjetaFranquiciaMedia tarjetaMedia;
+
+
+        Colectivo colectivo;
         [SetUp]
         public void Setup()
         {
-            tarj = new Tarjeta();
+            tarjeta = new Tarjeta(4);
+            tarjetaCompleta = new TarjetaFranquciaCompleta(2);
+            tarjetaMedia = new TarjetaFranquiciaMedia(3);
+            colectivo = new Colectivo("122 Roja");
         }
 
         [Test]
@@ -23,7 +31,7 @@ namespace TestTPBoleto2
         [TestCase(9000)]
         public void CargarTest(double c)
         {
-            Assert.That(tarj.Cargar(c), Is.EqualTo(true));
+            Assert.That(tarjeta.Cargar(c), Is.EqualTo(true));
 
         }
 
@@ -32,9 +40,7 @@ namespace TestTPBoleto2
         [TestCase(1500)]
         public void PuedePagarTest(double cargaInicial)
         {
-            Tarjeta tarjeta = new Tarjeta();
             tarjeta.Saldo = cargaInicial;
-            Colectivo colectivo = new Colectivo();
             Assert.NotNull(colectivo.pagarCon(tarjeta));
         }
 
@@ -43,9 +49,7 @@ namespace TestTPBoleto2
         [TestCase(-500)]
         public void NoPuedePagar(double cargaInicial)
         {
-            Tarjeta tarjeta = new Tarjeta();
             tarjeta.Saldo = cargaInicial;
-            Colectivo colectivo = new Colectivo();
             Assert.IsNull(colectivo.pagarCon(tarjeta));
         }
 
@@ -56,10 +60,8 @@ namespace TestTPBoleto2
         [TestCase(1000)]
         public void SaldoAdeudado(float cargaInicial)
         {
-            Tarjeta tarjeta = new Tarjeta();
             tarjeta.Saldo = cargaInicial;
             double saldoInicial = tarjeta.Saldo;
-            Colectivo colectivo = new Colectivo();
             colectivo.pagarCon(tarjeta);
             Assert.That(tarjeta.Saldo, Is.EqualTo(saldoInicial - Boleto.Precio));
 
@@ -72,12 +74,10 @@ namespace TestTPBoleto2
         [TestCase(1000)]
         public void MedioSaldoTest(float cargaInicial)
         {
-            TarjetaFranquiciaMedia tarjeta = new TarjetaFranquiciaMedia();
-            tarjeta.Saldo = cargaInicial;
-            double saldoInicial = tarjeta.Saldo;
-            Colectivo colectivo = new Colectivo();
-            colectivo.pagarCon(tarjeta);
-            Assert.That(tarjeta.Saldo, Is.EqualTo(saldoInicial - Boleto.Precio / 2));
+            tarjetaMedia.Saldo = cargaInicial;
+            double saldoInicial = tarjetaMedia.Saldo;
+            colectivo.pagarCon(tarjetaMedia);
+            Assert.That(tarjetaMedia.Saldo, Is.EqualTo(saldoInicial - Boleto.Precio / 2));
 
         }
 
@@ -88,13 +88,22 @@ namespace TestTPBoleto2
         [TestCase(1000)]
         public void CompletoSaldoTest(float cargaInicial)
         {
-            TarjetaFranquciaCompleta tarjeta = new TarjetaFranquciaCompleta();
-            tarjeta.Saldo = cargaInicial;
-            double saldoInicial = tarjeta.Saldo;
-            Colectivo colectivo = new Colectivo();
-            Assert.NotNull(colectivo.pagarCon(tarjeta));
+            tarjetaCompleta.Saldo = cargaInicial;
+            double saldoInicial = tarjetaCompleta.Saldo;
+            Assert.NotNull(colectivo.pagarCon(tarjetaCompleta));
+
 
         }
+
+        public void IntervaloMedioBoletoTest()
+        {
+            tarjetaMedia.Cargar(5000);
+            Boleto boleto1 = colectivo.pagarCon(tarjetaMedia);
+            Boleto boleto2 = colectivo.pagarCon(tarjetaMedia);
+            Assert.Null(boleto2);
+        }
+
+
 
 
 
