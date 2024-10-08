@@ -91,8 +91,6 @@ namespace TestTPBoleto2
             tarjetaCompleta.Saldo = cargaInicial;
             double saldoInicial = tarjetaCompleta.Saldo;
             Assert.NotNull(colectivo.pagarCon(tarjetaCompleta));
-
-
         }
 
         public void IntervaloMedioBoletoTest()

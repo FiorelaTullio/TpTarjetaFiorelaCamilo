@@ -8,9 +8,5 @@ namespace TpBoleto2
 {
     public class TarjetaFranquciaCompleta : Tarjeta
     {
-        public override bool Cobrar(double precio)
-        {
-            return true;
-        }
     }
 }
