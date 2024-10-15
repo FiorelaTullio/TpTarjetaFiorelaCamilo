@@ -8,8 +8,14 @@ namespace TpBoleto2
 {
     public class TarjetaFranquciaCompleta : Tarjeta
     {
-        public override bool Cobrar(double precio)
+
+        public TarjetaFranquciaCompleta(int id) : base(id)
         {
+        }
+
+        public override bool Cobrar(double precio, out double cobrado)
+        {
+            cobrado = 0.0;
             return true;
         }
     }

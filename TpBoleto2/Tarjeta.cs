@@ -16,16 +16,21 @@ namespace TpBoleto2
         public static double MaxSaldoNegativo = -480f; 
         const double SaldoMaximo = 9900f;
         protected double saldo;
+        public int ID;
+        public bool CargoPorEncimaDeNegativo = false;
+     
 
         public double Saldo
         {
             get { return saldo + MaxSaldoNegativo; }
             set { saldo = value - MaxSaldoNegativo; }
+
         }
 
-        public Tarjeta()
+        public Tarjeta(int id)
         {
             this.saldo = 0;
+            this.ID = id;
         }
 
         public bool Cargar(double carga)
@@ -34,6 +39,7 @@ namespace TpBoleto2
             {
                 if (this.Saldo + carga <= SaldoMaximo)
                 {
+                    this.CargoPorEncimaDeNegativo = CargoPorEncimaDeNegativo || (this.Saldo < 0 && this.Saldo + carga > 0);
                     this.Saldo += carga;
                     return true;
                 }
@@ -42,13 +48,15 @@ namespace TpBoleto2
         }
 
         // Especial para viajes plus
-        public virtual bool Cobrar(double precio)
+        public virtual bool Cobrar(double precio, out double cobrado)
         {
             if (saldo < precio)
             {
+                cobrado = 0;
                 return false;
             }
             saldo -= precio;
+            cobrado = precio;
             return true;
         }
     }
