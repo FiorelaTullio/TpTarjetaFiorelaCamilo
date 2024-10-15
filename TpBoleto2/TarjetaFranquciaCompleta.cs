@@ -8,6 +8,9 @@ namespace TpBoleto2
 {
     public class TarjetaFranquciaCompleta : Tarjeta
     {
+        public int cantidadBoletosSacados = 0;
+        public DateTime ultimoBoleto = DateTime.MinValue;
+        public static int MaxBoletosPorDia = 2;
         public TarjetaFranquciaCompleta(int id) : base(id)
         {
         }

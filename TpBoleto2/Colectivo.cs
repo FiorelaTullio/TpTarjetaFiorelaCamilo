@@ -25,7 +25,25 @@ namespace TpBoleto2
 
         private Boleto? pagarConFranquiciaCompleta(TarjetaFranquciaCompleta tarjeta)
         {
-            return cobrarTarjeta(tarjeta, 0);
+            if (tarjeta.ultimoBoleto == DateTime.Today)
+            {
+                if (tarjeta.cantidadBoletosSacados < TarjetaFranquciaCompleta.MaxBoletosPorDia)
+                {
+                    tarjeta.cantidadBoletosSacados++;
+                    return cobrarTarjeta(tarjeta, 0);
+                }
+                else
+                {
+                    tarjeta.cantidadBoletosSacados++;
+                    return cobrarTarjeta(tarjeta, Boleto.Precio);
+                }
+            }
+            else
+            {
+                tarjeta.ultimoBoleto = DateTime.Today;
+                tarjeta.cantidadBoletosSacados = 1;
+                return cobrarTarjeta(tarjeta, 0);
+            }
         }
 
         private Boleto? pagarConFranquiciaMedia(TarjetaFranquiciaMedia tarjeta)
@@ -55,8 +73,7 @@ namespace TpBoleto2
                     
                 }
             }
-        }
-
+        }  
         private Boleto? pagarConTarjetaNormal(Tarjeta tarjeta)
         {
             return cobrarTarjeta(tarjeta, Boleto.Precio);
