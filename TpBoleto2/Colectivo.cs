@@ -81,17 +81,14 @@ namespace TpBoleto2
 
         public Boleto? pagarCon (Tarjeta tarjeta)
         {
-            switch (tarjeta.GetType().Name)
+            Boleto? boleto = tarjeta.GetType().Name switch
             {
-                case nameof(Tarjeta):
-                    return pagarConTarjetaNormal(tarjeta);
-                case nameof(TarjetaFranquciaCompleta):
-                    return pagarConFranquiciaCompleta((TarjetaFranquciaCompleta)tarjeta);
-                case nameof(TarjetaFranquiciaMedia):
-                    return pagarConFranquiciaMedia((TarjetaFranquiciaMedia)tarjeta);
-                default:
-                    return null;
-            }
+                nameof(TarjetaFranquciaCompleta) => pagarConFranquiciaCompleta((TarjetaFranquciaCompleta)tarjeta),
+                nameof(TarjetaFranquiciaMedia) => pagarConFranquiciaMedia((TarjetaFranquiciaMedia)tarjeta),
+                _ => pagarConTarjetaNormal(tarjeta),
+            };
+            tarjeta.Acreditar();
+            return boleto;
         }
     }
 }

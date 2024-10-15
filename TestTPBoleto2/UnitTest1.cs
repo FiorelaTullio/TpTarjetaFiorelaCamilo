@@ -31,7 +31,7 @@ namespace TestTPBoleto2
         [TestCase(9000)]
         public void CargarTest(double c)
         {
-            Assert.That(tarjeta.Cargar(c), Is.EqualTo(true));
+            Assert.That(tarjeta.CargarAcreditar(c), Is.EqualTo(true));
 
         }
 
@@ -95,7 +95,7 @@ namespace TestTPBoleto2
         [Test]
         public void probarBoletoNormal()
         {
-            tarjeta.Cargar(3000);
+            tarjeta.CargarAcreditar(3000);
             Boleto? boleto = colectivo.pagarCon(tarjeta);
             Assert.NotNull(boleto);
             Assert.That(boleto.SacadoCon, Is.EqualTo(tarjeta.GetType().Name));
@@ -104,7 +104,7 @@ namespace TestTPBoleto2
         [Test]
         public void probarBoletoMedio()
         {
-            tarjetaMedia.Cargar(3000);
+            tarjetaMedia.CargarAcreditar(3000);
             Boleto? boleto = colectivo.pagarCon(tarjetaMedia);
             Assert.NotNull(boleto);
             Assert.That(boleto.SacadoCon, Is.EqualTo(tarjetaMedia.GetType().Name));
@@ -113,7 +113,7 @@ namespace TestTPBoleto2
         [Test]
         public void probarBoletoCompleto()
         {
-            tarjetaCompleta.Cargar(3000);
+            tarjetaCompleta.CargarAcreditar(3000);
             Boleto? boleto = colectivo.pagarCon(tarjetaCompleta);
             Assert.NotNull(boleto);
             Assert.That(boleto.SacadoCon, Is.EqualTo(tarjetaCompleta.GetType().Name));
@@ -123,16 +123,16 @@ namespace TestTPBoleto2
         [Test]
         public void IntervaloMedioBoletoTest()
         {
-            tarjetaMedia.Cargar(5000);
-            Boleto boleto1 = colectivo.pagarCon(tarjetaMedia);
-            Boleto boleto2 = colectivo.pagarCon(tarjetaMedia);
+            tarjetaMedia.CargarAcreditar(5000);
+            Boleto? boleto1 = colectivo.pagarCon(tarjetaMedia);
+            Boleto? boleto2 = colectivo.pagarCon(tarjetaMedia);
             Assert.Null(boleto2);
         }
 
         [Test]
         public void MedioBoletoCantidadTest()
         {
-            tarjetaMedia.Cargar(2000);
+            tarjetaMedia.CargarAcreditar(2000);
             double cargaAntes = tarjetaMedia.Saldo;
             tarjetaMedia.BoletosSacadosHoy = (DateTime.Today, TarjetaFranquiciaMedia.MaximosBoletosPorDia);
             Boleto? boleto = colectivo.pagarCon(tarjetaMedia);
@@ -144,21 +144,49 @@ namespace TestTPBoleto2
         [Test]
         public void SoloDosBoletosGratuitosTest()
         {
-            tarjetaCompleta.Cargar(4000);
+            tarjetaCompleta.CargarAcreditar(4000);
             double saldoAntes = tarjetaCompleta.Saldo;
             Assert.That(tarjetaCompleta.cantidadBoletosSacados, Is.EqualTo(0));
-            Boleto boleto1 = colectivo.pagarCon(tarjetaCompleta);
+            Boleto? boleto1 = colectivo.pagarCon(tarjetaCompleta);
             Assert.That(tarjetaCompleta.cantidadBoletosSacados, Is.EqualTo(1));
-            Boleto boleto2 = colectivo.pagarCon(tarjetaCompleta);
+            Boleto? boleto2 = colectivo.pagarCon(tarjetaCompleta);
             Assert.That(tarjetaCompleta.cantidadBoletosSacados, Is.EqualTo(2));
             Assert.NotNull(boleto1);
             Assert.NotNull(boleto2);
             Assert.That(tarjetaCompleta.Saldo, Is.EqualTo(saldoAntes));
-            Boleto boleto3 = colectivo.pagarCon(tarjetaCompleta);
+            Boleto? boleto3 = colectivo.pagarCon(tarjetaCompleta);
             Assert.That(tarjetaCompleta.cantidadBoletosSacados, Is.EqualTo(3));
             Assert.NotNull(boleto3);
             double saldoEsperado = saldoAntes - Boleto.Precio;
             Assert.That(tarjetaCompleta.Saldo, Is.EqualTo(saldoEsperado));
+        }
+
+        [Test]
+        public void CargaLimitadaTest()
+        {
+            double i = tarjeta.Saldo;
+            for (; i < Tarjeta.SaldoMaximo; i += 2000f)
+            {
+                Assert.That(tarjeta.Saldo, Is.EqualTo(i));
+                tarjeta.CargarAcreditar(2000f);
+            }
+
+            Assert.That(tarjeta.Saldo, Is.EqualTo(Tarjeta.SaldoMaximo));
+            Assert.That(tarjeta.pendienteDeAcreditacion, Is.EqualTo(i - Tarjeta.SaldoMaximo));
+        }
+
+        [Test]
+        public void AcreditarAlSacarTest()
+        {
+            while(tarjeta.pendienteDeAcreditacion == 0)
+            {
+                tarjeta.CargarAcreditar(2000);
+            }
+
+            double pendienteAntes = tarjeta.pendienteDeAcreditacion;
+            colectivo.pagarCon(tarjeta);
+            double pendienteDespues = tarjeta.pendienteDeAcreditacion;
+            Assert.That(pendienteDespues, Is.LessThan(pendienteAntes));
         }
 
         [Test]

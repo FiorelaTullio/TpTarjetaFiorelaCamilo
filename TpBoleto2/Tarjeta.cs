@@ -13,9 +13,10 @@ namespace TpBoleto2
     public class Tarjeta
     {
         public static double[] CargasValidas = [2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000];
-        public static double MaxSaldoNegativo = -480f; 
-        const double SaldoMaximo = 9900f;
+        public static double MaxSaldoNegativo = -480f;
+        public const double SaldoMaximo = 36000f;
         protected double saldo;
+        public double pendienteDeAcreditacion { get; private set; } = 0;
         public int ID;
         public bool CargoPorEncimaDeNegativo = false;
      
@@ -33,18 +34,29 @@ namespace TpBoleto2
             this.ID = id;
         }
 
-        public bool Cargar(double carga)
+        public bool CargarAcreditar(double carga)
         {
-            if (CargasValidas.Contains(carga))
+            bool puedeCargar = CargasValidas.Contains(carga);
+            if (puedeCargar)
             {
-                if (this.Saldo + carga <= SaldoMaximo)
-                {
-                    this.CargoPorEncimaDeNegativo = CargoPorEncimaDeNegativo || (this.Saldo < 0 && this.Saldo + carga > 0);
-                    this.Saldo += carga;
-                    return true;
-                }
+                this.pendienteDeAcreditacion += carga;
             }
-            return false;
+            this.Acreditar();
+            return puedeCargar;
+        }
+
+        public void Acreditar()
+        {
+            if (this.Saldo + this.pendienteDeAcreditacion > SaldoMaximo)
+            {
+                this.pendienteDeAcreditacion -= SaldoMaximo - this.Saldo;
+                this.Saldo = SaldoMaximo;
+            }
+            else
+            {
+                this.Saldo += this.pendienteDeAcreditacion;
+                this.pendienteDeAcreditacion = 0;
+            }
         }
 
         public bool Cobrar(double precio)
