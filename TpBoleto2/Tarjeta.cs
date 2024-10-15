@@ -47,16 +47,13 @@ namespace TpBoleto2
             return false;
         }
 
-        // Especial para viajes plus
-        public virtual bool Cobrar(double precio, out double cobrado)
+        public bool Cobrar(double precio)
         {
             if (saldo < precio)
             {
-                cobrado = 0;
                 return false;
             }
             saldo -= precio;
-            cobrado = precio;
             return true;
         }
     }

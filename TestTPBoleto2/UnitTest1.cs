@@ -91,8 +91,6 @@ namespace TestTPBoleto2
             tarjetaCompleta.Saldo = cargaInicial;
             double saldoInicial = tarjetaCompleta.Saldo;
             Assert.NotNull(colectivo.pagarCon(tarjetaCompleta));
-     
-
         }
 
         [Test]
@@ -120,6 +118,28 @@ namespace TestTPBoleto2
             Boleto? boleto = colectivo.pagarCon(tarjetaCompleta);
             Assert.NotNull(boleto);
             Assert.That(boleto.SacadoCon, Is.EqualTo(tarjetaCompleta.GetType().Name));
+        }
+
+
+        [Test]
+        public void IntervaloMedioBoletoTest()
+        {
+            tarjetaMedia.Cargar(5000);
+            Boleto boleto1 = colectivo.pagarCon(tarjetaMedia);
+            Boleto boleto2 = colectivo.pagarCon(tarjetaMedia);
+            Assert.Null(boleto2);
+        }
+
+        [Test]
+        public void MedioBoletoCantidadTest()
+        {
+            tarjetaMedia.Cargar(2000);
+            double cargaAntes = tarjetaMedia.Saldo;
+            tarjetaMedia.BoletosSacadosHoy = (DateTime.Today, TarjetaFranquiciaMedia.MaximosBoletosPorDia);
+            Boleto? boleto = colectivo.pagarCon(tarjetaMedia);
+            double cargaDespues = tarjetaMedia.Saldo;
+            Assert.NotNull(boleto);
+            Assert.That(cargaAntes - cargaDespues, Is.EqualTo(Boleto.Precio));
         }
 
 

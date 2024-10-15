@@ -8,20 +8,11 @@ namespace TpBoleto2
 {
     public class TarjetaFranquiciaMedia : Tarjeta
     {
+        public (DateTime, int) BoletosSacadosHoy = (DateTime.MinValue, 0);
+        public static int MaximosBoletosPorDia = 4;
+        public static int MinutosEntreBoletos = 5;
         public TarjetaFranquiciaMedia(int id) : base(id)
         {
-        }
-
-        public override bool Cobrar(double precio, out double cobrado)
-        {
-            if (saldo < precio / 2)
-            {
-                cobrado = 0.0;
-                return false;
-            }
-            saldo -= precio / 2;
-            cobrado = precio / 2;
-            return true;
         }
     }
 }

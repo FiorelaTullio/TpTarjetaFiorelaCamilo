@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TpBoleto2
 {
-    public class TarjetaFranquciaCompleta : Tarjeta
+    public class Programa
     {
-        public TarjetaFranquciaCompleta(int id) : base(id)
+        public static int Main()
         {
+            return 0;
         }
     }
 }

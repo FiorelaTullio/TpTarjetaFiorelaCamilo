@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iGCHA72SL58UBUj4gMm791Aty/B/evBeoAuXKL4rZ4CTONiuOKnsutFkZQ6r77/dlL52DOdBBzELep4wwqvr8A==",
+  "dgSpecHash": "hCBwZ+FqM3imXslqudpW2apD9YoH2XRMLsSOCfNRZgI5B3MvIOCR7PIH++7Lvr9kRwTd/6PH0zRT3opKyDf8uQ==",
   "success": true,
-  "projectFilePath": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpBoleto2\\TestTPBoleto2\\TestTPBoleto2.csproj",
+  "projectFilePath": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TestTPBoleto2\\TestTPBoleto2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fiore\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\fiore\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",

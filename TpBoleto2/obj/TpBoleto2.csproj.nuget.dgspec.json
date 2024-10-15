@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpBoleto2\\TpBoleto2\\TpBoleto2.csproj": {}
+    "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj": {}
   },
   "projects": {
-    "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpBoleto2\\TpBoleto2\\TpBoleto2.csproj": {
+    "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpBoleto2\\TpBoleto2\\TpBoleto2.csproj",
+        "projectUniqueName": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj",
         "projectName": "TpBoleto2",
-        "projectPath": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpBoleto2\\TpBoleto2\\TpBoleto2.csproj",
+        "projectPath": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj",
         "packagesPath": "C:\\Users\\fiore\\.nuget\\packages\\",
-        "outputPath": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpBoleto2\\TpBoleto2\\obj\\",
+        "outputPath": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fiore\\AppData\\Roaming\\NuGet\\NuGet.Config",
