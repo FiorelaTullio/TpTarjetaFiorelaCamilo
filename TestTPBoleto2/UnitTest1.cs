@@ -6,10 +6,12 @@ namespace TestTPBoleto2
     public class TarjetaTest
     {
         Tarjeta tarj;
+        TarjetaFranquciaCompleta boleto
         [SetUp]
         public void Setup()
         {
             tarj = new Tarjeta();
+
         }
 
         [Test]
@@ -93,6 +95,11 @@ namespace TestTPBoleto2
             double saldoInicial = tarjeta.Saldo;
             Colectivo colectivo = new Colectivo();
             Assert.NotNull(colectivo.pagarCon(tarjeta));
+
+        }
+
+        public void CantidadViajesGratisTest()
+        {
 
         }
 

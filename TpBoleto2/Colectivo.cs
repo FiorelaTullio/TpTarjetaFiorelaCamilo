@@ -40,7 +40,7 @@ namespace TpBoleto2
 
         public Boleto? pagarConFranquiciaMedia(TarjetaFranquiciaMedia tarjeta)
         {
-            return cobrarTarjeta(tarjeta, Boleto.Medio)
+            return cobrarTarjeta(tarjeta, Boleto.MedioBoleto);
         }
 
         private Boleto? pagarConTarjetaNormal(Tarjeta tarjeta)

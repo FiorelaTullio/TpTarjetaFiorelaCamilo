@@ -12,7 +12,7 @@ namespace TpBoleto2
 
     public class Tarjeta
     {
-        public static double[] CargasValidas = [2000,3000,4000,5000,6000,7000,8000,9000];
+        public static double[] CargasValidas = [2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000];
         public static double MaxSaldoNegativo = -480f; 
         const double SaldoMaximo = 9900f;
         protected double saldo;
