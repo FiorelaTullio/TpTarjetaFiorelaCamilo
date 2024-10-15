@@ -8,6 +8,10 @@ namespace TpBoleto2
 {
     public class TarjetaFranquciaCompleta : Tarjeta
     {
+
+        public int cantidadBoletosSacados = 0;
+        public DateTime ultimoBoleto = DateTime.MinValue;
+
         public override bool Cobrar(double precio)
         {
             return true;
