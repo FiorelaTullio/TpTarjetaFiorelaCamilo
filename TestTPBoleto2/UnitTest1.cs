@@ -5,13 +5,19 @@ namespace TestTPBoleto2
 {
     public class TarjetaTest
     {
-        Tarjeta tarj;
-        TarjetaFranquciaCompleta boleto
+        Tarjeta tarjeta;
+        TarjetaFranquciaCompleta tarjetaCompleta;
+        TarjetaFranquiciaMedia tarjetaMedia;
+
+
+        Colectivo colectivo;
         [SetUp]
         public void Setup()
         {
-            tarj = new Tarjeta();
-
+            tarjeta = new Tarjeta();
+            tarjetaCompleta = new TarjetaFranquciaCompleta();
+            tarjetaMedia = new TarjetaFranquiciaMedia();
+            colectivo = new Colectivo();
         }
 
         [Test]
