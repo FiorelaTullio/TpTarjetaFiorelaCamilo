@@ -8,15 +8,5 @@ namespace TpBoleto2
 {
     public class TarjetaFranquiciaMedia : Tarjeta
     {
-
-        public override bool Cobrar(double precio)
-        {
-            if (saldo < precio / 2)
-            {
-                return false;
-            }
-            saldo -= precio / 2;
-            return true;
-        }
     }
 }

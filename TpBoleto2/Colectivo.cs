@@ -19,15 +19,15 @@ namespace TpBoleto2
 
         private Boleto? pagarConFranquiciaCompleta(TarjetaFranquciaCompleta tarjeta)
         {
-
             if (tarjeta.ultimoBoleto == DateTime.Today)
             {
-                if (tarjeta.cantidadBoletosSacados < TarjetaFranquciaCompleta.MaxSaldoNegativo)
+                if (tarjeta.cantidadBoletosSacados < TarjetaFranquciaCompleta.MaxBoletosPorDia)
                 {
                     tarjeta.cantidadBoletosSacados++;
                     return cobrarTarjeta(tarjeta, 0);
                 } else
                 {
+                    tarjeta.cantidadBoletosSacados++;
                     return cobrarTarjeta(tarjeta, Boleto.Precio);
                 }
             } else

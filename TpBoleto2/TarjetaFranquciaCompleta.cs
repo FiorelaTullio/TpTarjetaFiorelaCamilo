@@ -11,11 +11,6 @@ namespace TpBoleto2
 
         public int cantidadBoletosSacados = 0;
         public DateTime ultimoBoleto = DateTime.MinValue;
-        static int MaxBoletosPorDia = 2;
-
-        public override bool Cobrar(double precio)
-        {
-            return true;
-        }
+        public static int MaxBoletosPorDia = 2;
     }
 }

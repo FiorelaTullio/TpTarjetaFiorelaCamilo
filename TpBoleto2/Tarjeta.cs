@@ -42,7 +42,7 @@ namespace TpBoleto2
         }
 
         // Especial para viajes plus
-        public virtual bool Cobrar(double precio)
+        public bool Cobrar(double precio)
         {
             if (saldo < precio)
             {
