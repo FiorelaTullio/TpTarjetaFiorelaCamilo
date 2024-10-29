@@ -20,6 +20,13 @@ namespace TpBoleto2
             Linea = linea;
         }
 
+        private bool puedeUsarFranquicia()
+        {
+            bool puedeDia = DateTime.Now.DayOfWeek != DayOfWeek.Saturday && DateTime.Now.DayOfWeek != DayOfWeek.Sunday;
+            bool puedeHora = 6 <= DateTime.Now.Hour && DateTime.Now.Hour <= 22;
+            return puedeDia && puedeHora;
+        }
+
         private Boleto? cobrarTarjeta(Tarjeta tarjeta, double precio)
         {
             if (tarjeta.Cobrar(precio))
@@ -33,6 +40,10 @@ namespace TpBoleto2
 
         private Boleto? pagarConFranquiciaCompleta(TarjetaFranquciaCompleta tarjeta)
         {
+            if (!puedeUsarFranquicia())
+            {
+                return cobrarTarjeta(tarjeta, PrecioBoleto);
+            }
             if (tarjeta.ultimoBoleto == DateTime.Today)
             {
                 if (tarjeta.cantidadBoletosSacados < TarjetaFranquciaCompleta.MaxBoletosPorDia)
@@ -56,6 +67,10 @@ namespace TpBoleto2
 
         private Boleto? pagarConFranquiciaMedia(TarjetaFranquiciaMedia tarjeta)
         {
+            if (!puedeUsarFranquicia())
+            {
+                return cobrarTarjeta(tarjeta, PrecioBoleto);
+            }
             (DateTime dia, int veces) = tarjeta.BoletosSacadosHoy;
             if (dia.Date != DateTime.Now.Date)
             {
