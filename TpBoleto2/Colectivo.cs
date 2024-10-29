@@ -5,6 +5,14 @@ namespace TpBoleto2
     public class Colectivo
     {
 
+        public static float PrecioBoleto = 1200f;
+        public static float MedioPrecioBoleto
+        {
+            get { return Colectivo.PrecioBoleto / 2; }
+        }
+
+        public static (int, int, double)[] intervalosDescuentos = [(0, 29, 1), (30, 79, 0.8), (80, int.MaxValue, 0.75)];
+
         public string Linea { get; }
         
         public Colectivo(string linea) 
@@ -35,7 +43,7 @@ namespace TpBoleto2
                 else
                 {
                     tarjeta.cantidadBoletosSacados++;
-                    return cobrarTarjeta(tarjeta, Boleto.Precio);
+                    return cobrarTarjeta(tarjeta, PrecioBoleto);
                 }
             }
             else
@@ -52,20 +60,20 @@ namespace TpBoleto2
             if (dia.Date != DateTime.Now.Date)
             {
                 tarjeta.BoletosSacadosHoy = (DateTime.Now, 1);
-                return cobrarTarjeta(tarjeta, Boleto.MedioBoleto);
+                return cobrarTarjeta(tarjeta, MedioPrecioBoleto);
             } else
             {
                 if (veces >= TarjetaFranquiciaMedia.MaximosBoletosPorDia)
                 {
                     tarjeta.BoletosSacadosHoy = (DateTime.Now, veces + 1);
-                    return cobrarTarjeta(tarjeta, Boleto.Precio);
+                    return cobrarTarjeta(tarjeta, PrecioBoleto);
                 } else
                 {
                     TimeSpan span = DateTime.Now - dia;
                     if (span.Minutes > TarjetaFranquiciaMedia.MinutosEntreBoletos)
                     {
                         tarjeta.BoletosSacadosHoy = (DateTime.Now, veces + 1);
-                        return cobrarTarjeta(tarjeta, Boleto.MedioBoleto);
+                        return cobrarTarjeta(tarjeta, MedioPrecioBoleto);
                     } else
                     {
                         return null;
@@ -76,7 +84,21 @@ namespace TpBoleto2
         }  
         private Boleto? pagarConTarjetaNormal(Tarjeta tarjeta)
         {
-            return cobrarTarjeta(tarjeta, Boleto.Precio);
+            if (tarjeta.MesActual != DateTime.Today.Month)
+            {
+                tarjeta.MesActual = DateTime.Today.Month;
+                tarjeta.UsosEsteMes = 0;
+            }
+
+            foreach((int desde, int hasta, double descuento) in intervalosDescuentos)
+            {
+                if (desde <= tarjeta.UsosEsteMes && tarjeta.UsosEsteMes <= hasta)
+                {
+                    tarjeta.UsosEsteMes++;
+                    return cobrarTarjeta(tarjeta,  descuento * PrecioBoleto);
+                }
+            }
+            return null;
         }
 
         public Boleto? pagarCon (Tarjeta tarjeta)

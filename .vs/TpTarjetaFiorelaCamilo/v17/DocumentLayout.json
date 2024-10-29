@@ -1,7 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Colectivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TpBoleto2\\Colectivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Boleto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TpBoleto2\\Boleto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Tarjeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TpBoleto2\\Tarjeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TarjetaFranquiciaMedia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TpBoleto2\\TarjetaFranquiciaMedia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TestTPBoleto2\\UnitTest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TestTPBoleto2\\UnitTest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TpBoleto2\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TarjetaFranquciaCompleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TpBoleto2\\TarjetaFranquciaCompleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +38,102 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TestTPBoleto2\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "TestTPBoleto2\\UnitTest1.cs",
+              "ToolTip": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TestTPBoleto2\\UnitTest1.cs",
+              "RelativeToolTip": "TestTPBoleto2\\UnitTest1.cs",
+              "ViewState": "AQIAAKgAAAAAAAAAAAAAALcAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T18:54:31.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TarjetaFranquiciaMedia.cs",
+              "DocumentMoniker": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TarjetaFranquiciaMedia.cs",
+              "RelativeDocumentMoniker": "TpBoleto2\\TarjetaFranquiciaMedia.cs",
+              "ToolTip": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TarjetaFranquiciaMedia.cs",
+              "RelativeToolTip": "TpBoleto2\\TarjetaFranquiciaMedia.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T18:48:26.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TarjetaFranquciaCompleta.cs",
+              "DocumentMoniker": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TarjetaFranquciaCompleta.cs",
+              "RelativeDocumentMoniker": "TpBoleto2\\TarjetaFranquciaCompleta.cs",
+              "ToolTip": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TarjetaFranquciaCompleta.cs",
+              "RelativeToolTip": "TpBoleto2\\TarjetaFranquciaCompleta.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T18:48:25.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Tarjeta.cs",
+              "DocumentMoniker": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Tarjeta.cs",
+              "RelativeDocumentMoniker": "TpBoleto2\\Tarjeta.cs",
+              "ToolTip": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Tarjeta.cs",
+              "RelativeToolTip": "TpBoleto2\\Tarjeta.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABUAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T18:48:25.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Colectivo.cs",
+              "DocumentMoniker": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Colectivo.cs",
+              "RelativeDocumentMoniker": "TpBoleto2\\Colectivo.cs",
+              "ToolTip": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Colectivo.cs",
+              "RelativeToolTip": "TpBoleto2\\Colectivo.cs",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAAGAAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T18:48:24.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Class1.cs",
+              "RelativeDocumentMoniker": "TpBoleto2\\Class1.cs",
+              "ToolTip": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Class1.cs",
+              "RelativeToolTip": "TpBoleto2\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T18:48:22.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Boleto.cs",
+              "DocumentMoniker": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Boleto.cs",
+              "RelativeDocumentMoniker": "TpBoleto2\\Boleto.cs",
+              "ToolTip": "D:\\Cosas_Compu_Vieja\\ACosas del Polit\u00E9cnico\\6 a\u00F1o IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\Boleto.cs",
+              "RelativeToolTip": "TpBoleto2\\Boleto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T18:48:15.887Z",
+              "EditorCaption": ""
             }
           ]
         }

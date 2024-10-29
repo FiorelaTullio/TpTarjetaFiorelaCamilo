@@ -13,12 +13,14 @@ namespace TpBoleto2
     public class Tarjeta
     {
         public static double[] CargasValidas = [2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000];
-        public static double MaxSaldoNegativo = -480f;
+        public static double MaxSaldoNegativo = -600f;
         public const double SaldoMaximo = 36000f;
         protected double saldo;
         public double pendienteDeAcreditacion { get; private set; } = 0;
         public int ID;
         public bool CargoPorEncimaDeNegativo = false;
+        public int MesActual = -1;
+        public int UsosEsteMes = 0;
      
 
         public double Saldo

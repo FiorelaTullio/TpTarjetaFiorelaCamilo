@@ -54,16 +54,16 @@ namespace TestTPBoleto2
         }
 
         [Test]
-        [TestCase(460)]
-        [TestCase(500)]
+        [TestCase(600)]
         [TestCase(700)]
-        [TestCase(1000)]
+        [TestCase(800)]
+        [TestCase(900)]
         public void SaldoAdeudado(float cargaInicial)
         {
             tarjeta.Saldo = cargaInicial;
             double saldoInicial = tarjeta.Saldo;
             colectivo.pagarCon(tarjeta);
-            Assert.That(tarjeta.Saldo, Is.EqualTo(saldoInicial - Boleto.Precio));
+            Assert.That(tarjeta.Saldo, Is.EqualTo(saldoInicial - Colectivo.PrecioBoleto));
 
         }
 
@@ -77,7 +77,7 @@ namespace TestTPBoleto2
             tarjetaMedia.Saldo = cargaInicial;
             double saldoInicial = tarjetaMedia.Saldo;
             colectivo.pagarCon(tarjetaMedia);
-            Assert.That(tarjetaMedia.Saldo, Is.EqualTo(saldoInicial - Boleto.MedioBoleto));
+            Assert.That(tarjetaMedia.Saldo, Is.EqualTo(saldoInicial - Colectivo.MedioPrecioBoleto));
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace TestTPBoleto2
             Boleto? boleto = colectivo.pagarCon(tarjetaMedia);
             double cargaDespues = tarjetaMedia.Saldo;
             Assert.NotNull(boleto);
-            Assert.That(cargaAntes - cargaDespues, Is.EqualTo(Boleto.Precio));
+            Assert.That(cargaAntes - cargaDespues, Is.EqualTo(Colectivo.PrecioBoleto));
         }
 
         [Test]
@@ -157,7 +157,7 @@ namespace TestTPBoleto2
             Boleto? boleto3 = colectivo.pagarCon(tarjetaCompleta);
             Assert.That(tarjetaCompleta.cantidadBoletosSacados, Is.EqualTo(3));
             Assert.NotNull(boleto3);
-            double saldoEsperado = saldoAntes - Boleto.Precio;
+            double saldoEsperado = saldoAntes - Colectivo.PrecioBoleto;
             Assert.That(tarjetaCompleta.Saldo, Is.EqualTo(saldoEsperado));
         }
 
@@ -187,6 +187,34 @@ namespace TestTPBoleto2
             colectivo.pagarCon(tarjeta);
             double pendienteDespues = tarjeta.pendienteDeAcreditacion;
             Assert.That(pendienteDespues, Is.LessThan(pendienteAntes));
+        }
+
+        [Test]
+        public void DescuentosTest()
+        {
+            int iteraciones = 0;
+            while(0 <= iteraciones && iteraciones <= 29)
+            {
+                tarjeta.Saldo = Colectivo.PrecioBoleto;
+                colectivo.pagarCon(tarjeta);
+                Assert.That(tarjeta.Saldo, Is.EqualTo(0));
+                iteraciones++;
+            }
+
+            while (30 <= iteraciones && iteraciones <= 79)
+            {
+                tarjeta.Saldo = Colectivo.PrecioBoleto * 0.8;
+                colectivo.pagarCon(tarjeta);
+                Assert.That(tarjeta.Saldo, Is.EqualTo(0));
+                iteraciones++;
+            }
+            while (80 <= iteraciones && iteraciones <= 100)
+            {
+                tarjeta.Saldo = Colectivo.PrecioBoleto * 0.75;
+                colectivo.pagarCon(tarjeta);
+                Assert.That(tarjeta.Saldo, Is.EqualTo(0));
+                iteraciones++;
+            }
         }
 
         [Test]
