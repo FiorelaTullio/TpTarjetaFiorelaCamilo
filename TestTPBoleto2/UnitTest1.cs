@@ -11,6 +11,7 @@ namespace TestTPBoleto2
 
 
         Colectivo colectivo;
+        ColectivoInterurbano interurbano;
         [SetUp]
         public void Setup()
         {
@@ -18,6 +19,7 @@ namespace TestTPBoleto2
             tarjetaCompleta = new TarjetaFranquciaCompleta(2);
             tarjetaMedia = new TarjetaFranquiciaMedia(3);
             colectivo = new Colectivo("122 Roja");
+            interurbano = new ColectivoInterurbano("146 Negro");
         }
 
         [Test]
@@ -63,7 +65,7 @@ namespace TestTPBoleto2
             tarjeta.Saldo = cargaInicial;
             double saldoInicial = tarjeta.Saldo;
             colectivo.pagarCon(tarjeta);
-            Assert.That(tarjeta.Saldo, Is.EqualTo(saldoInicial - Colectivo.PrecioBoleto));
+            Assert.That(tarjeta.Saldo, Is.EqualTo(saldoInicial - colectivo.PrecioBoleto));
 
         }
 
@@ -77,7 +79,7 @@ namespace TestTPBoleto2
             tarjetaMedia.Saldo = cargaInicial;
             double saldoInicial = tarjetaMedia.Saldo;
             colectivo.pagarCon(tarjetaMedia);
-            Assert.That(tarjetaMedia.Saldo, Is.EqualTo(saldoInicial - Colectivo.MedioPrecioBoleto));
+            Assert.That(tarjetaMedia.Saldo, Is.EqualTo(saldoInicial - colectivo.MedioPrecioBoleto));
         }
 
         [Test]
@@ -138,7 +140,7 @@ namespace TestTPBoleto2
             Boleto? boleto = colectivo.pagarCon(tarjetaMedia);
             double cargaDespues = tarjetaMedia.Saldo;
             Assert.NotNull(boleto);
-            Assert.That(cargaAntes - cargaDespues, Is.EqualTo(Colectivo.PrecioBoleto));
+            Assert.That(cargaAntes - cargaDespues, Is.EqualTo(colectivo.PrecioBoleto));
         }
 
         [Test]
@@ -157,7 +159,7 @@ namespace TestTPBoleto2
             Boleto? boleto3 = colectivo.pagarCon(tarjetaCompleta);
             Assert.That(tarjetaCompleta.cantidadBoletosSacados, Is.EqualTo(3));
             Assert.NotNull(boleto3);
-            double saldoEsperado = saldoAntes - Colectivo.PrecioBoleto;
+            double saldoEsperado = saldoAntes - colectivo.PrecioBoleto;
             Assert.That(tarjetaCompleta.Saldo, Is.EqualTo(saldoEsperado));
         }
 
@@ -195,7 +197,7 @@ namespace TestTPBoleto2
             int iteraciones = 0;
             while(0 <= iteraciones && iteraciones <= 29)
             {
-                tarjeta.Saldo = Colectivo.PrecioBoleto;
+                tarjeta.Saldo = colectivo.PrecioBoleto;
                 colectivo.pagarCon(tarjeta);
                 Assert.That(tarjeta.Saldo, Is.EqualTo(0));
                 iteraciones++;
@@ -203,14 +205,14 @@ namespace TestTPBoleto2
 
             while (30 <= iteraciones && iteraciones <= 79)
             {
-                tarjeta.Saldo = Colectivo.PrecioBoleto * 0.8;
+                tarjeta.Saldo = colectivo.PrecioBoleto * 0.8;
                 colectivo.pagarCon(tarjeta);
                 Assert.That(tarjeta.Saldo, Is.EqualTo(0));
                 iteraciones++;
             }
             while (80 <= iteraciones && iteraciones <= 100)
             {
-                tarjeta.Saldo = Colectivo.PrecioBoleto * 0.75;
+                tarjeta.Saldo = colectivo.PrecioBoleto * 0.75;
                 colectivo.pagarCon(tarjeta);
                 Assert.That(tarjeta.Saldo, Is.EqualTo(0));
                 iteraciones++;
@@ -226,17 +228,53 @@ namespace TestTPBoleto2
                 for (int j = 0; j < 24; j++)
                 {
                     colectivo.reloj = new TiempoFalso(new DateTime(2024, 10, 21 + i, j, 0, 0));
-                    tarjetaMedia.Saldo = Colectivo.PrecioBoleto;
+                    tarjetaMedia.Saldo = colectivo.PrecioBoleto;
                     Boleto? boleto = colectivo.pagarCon(tarjetaMedia);
                     if (i < 5 && j >= 6 && j <= 22)
                     {
-                        Assert.That(tarjetaMedia.Saldo, Is.EqualTo(Colectivo.PrecioBoleto - Colectivo.MedioPrecioBoleto));
+                        Assert.That(tarjetaMedia.Saldo, Is.EqualTo(colectivo.PrecioBoleto - colectivo.MedioPrecioBoleto));
                     } else
                     {
                         Assert.That(tarjetaMedia.Saldo, Is.EqualTo(0));
                     }
                 }
             }
+        }
+
+        [Test]
+        [TestCase(3000)]
+        [TestCase(4000)]
+        [TestCase(5000)]
+        [TestCase(6000)]
+        public void InterurbanosTest(float saldo) 
+        {
+            tarjeta.Saldo = saldo;
+            interurbano.pagarCon(tarjeta);
+            Assert.That(tarjeta.Saldo, Is.EqualTo(saldo - 2500f));
+        }
+
+        [Test]
+        [TestCase(3000)]
+        [TestCase(4000)]
+        [TestCase(5000)]
+        [TestCase(6000)]
+        public void InterurbanosMedioTest(float saldo)
+        {
+            tarjetaMedia.Saldo = saldo;
+            interurbano.pagarCon(tarjetaMedia);
+            Assert.That(tarjetaMedia.Saldo, Is.EqualTo(saldo - 1250f));
+        }
+
+        [Test]
+        [TestCase(3000)]
+        [TestCase(4000)]
+        [TestCase(5000)]
+        [TestCase(6000)]
+        public void InterurbanosCompletoTest(float saldo)
+        {
+            tarjetaCompleta.Saldo = saldo;
+            interurbano.pagarCon(tarjetaCompleta);
+            Assert.That(tarjetaCompleta.Saldo, Is.EqualTo(saldo));
         }
 
         [Test]

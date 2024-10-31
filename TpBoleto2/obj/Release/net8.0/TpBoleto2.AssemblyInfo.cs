@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TpBoleto2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7062ab9643353caec75b3f97d1718f906ecd64bc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d40cb3317ee8438233ec85b4ac897be4750954c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("TpBoleto2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TpBoleto2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

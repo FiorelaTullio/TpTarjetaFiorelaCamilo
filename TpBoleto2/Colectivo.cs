@@ -5,10 +5,12 @@ namespace TpBoleto2
     public class Colectivo
     {
 
-        public static float PrecioBoleto = 1200f;
-        public static float MedioPrecioBoleto
+        public virtual float PrecioBoleto {
+            get { return 1200f; }
+        }
+        public float MedioPrecioBoleto
         {
-            get { return Colectivo.PrecioBoleto / 2; }
+            get { return this.PrecioBoleto / 2; }
         }
 
         public static (int, int, double)[] intervalosDescuentos = [(0, 29, 1), (30, 79, 0.8), (80, int.MaxValue, 0.75)];
