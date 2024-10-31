@@ -12,6 +12,7 @@ namespace TpBoleto2
         }
 
         public static (int, int, double)[] intervalosDescuentos = [(0, 29, 1), (30, 79, 0.8), (80, int.MaxValue, 0.75)];
+        public Tiempo reloj = new Tiempo();
 
         public string Linea { get; }
         
@@ -22,8 +23,8 @@ namespace TpBoleto2
 
         private bool puedeUsarFranquicia()
         {
-            bool puedeDia = DateTime.Now.DayOfWeek != DayOfWeek.Saturday && DateTime.Now.DayOfWeek != DayOfWeek.Sunday;
-            bool puedeHora = 6 <= DateTime.Now.Hour && DateTime.Now.Hour <= 22;
+            bool puedeDia = reloj.Now().DayOfWeek != DayOfWeek.Saturday && reloj.Now().DayOfWeek != DayOfWeek.Sunday;
+            bool puedeHora = 6 <= reloj.Now().Hour && reloj.Now().Hour <= 22;
             return puedeDia && puedeHora;
         }
 
@@ -44,7 +45,7 @@ namespace TpBoleto2
             {
                 return cobrarTarjeta(tarjeta, PrecioBoleto);
             }
-            if (tarjeta.ultimoBoleto == DateTime.Today)
+            if (tarjeta.ultimoBoleto == reloj.Today())
             {
                 if (tarjeta.cantidadBoletosSacados < TarjetaFranquciaCompleta.MaxBoletosPorDia)
                 {
@@ -59,7 +60,7 @@ namespace TpBoleto2
             }
             else
             {
-                tarjeta.ultimoBoleto = DateTime.Today;
+                tarjeta.ultimoBoleto = reloj.Today();
                 tarjeta.cantidadBoletosSacados = 1;
                 return cobrarTarjeta(tarjeta, 0);
             }
@@ -72,22 +73,22 @@ namespace TpBoleto2
                 return cobrarTarjeta(tarjeta, PrecioBoleto);
             }
             (DateTime dia, int veces) = tarjeta.BoletosSacadosHoy;
-            if (dia.Date != DateTime.Now.Date)
+            if (dia.Date != reloj.Now().Date)
             {
-                tarjeta.BoletosSacadosHoy = (DateTime.Now, 1);
+                tarjeta.BoletosSacadosHoy = (reloj.Now(), 1);
                 return cobrarTarjeta(tarjeta, MedioPrecioBoleto);
             } else
             {
                 if (veces >= TarjetaFranquiciaMedia.MaximosBoletosPorDia)
                 {
-                    tarjeta.BoletosSacadosHoy = (DateTime.Now, veces + 1);
+                    tarjeta.BoletosSacadosHoy = (reloj.Now(), veces + 1);
                     return cobrarTarjeta(tarjeta, PrecioBoleto);
                 } else
                 {
-                    TimeSpan span = DateTime.Now - dia;
-                    if (span.Minutes > TarjetaFranquiciaMedia.MinutosEntreBoletos)
+                    TimeSpan span = reloj.Now() - dia;
+                    if (span.TotalMinutes > TarjetaFranquiciaMedia.MinutosEntreBoletos)
                     {
-                        tarjeta.BoletosSacadosHoy = (DateTime.Now, veces + 1);
+                        tarjeta.BoletosSacadosHoy = (reloj.Now(), veces + 1);
                         return cobrarTarjeta(tarjeta, MedioPrecioBoleto);
                     } else
                     {
@@ -99,9 +100,9 @@ namespace TpBoleto2
         }  
         private Boleto? pagarConTarjetaNormal(Tarjeta tarjeta)
         {
-            if (tarjeta.MesActual != DateTime.Today.Month)
+            if (tarjeta.MesActual != reloj.Today().Month)
             {
-                tarjeta.MesActual = DateTime.Today.Month;
+                tarjeta.MesActual = reloj.Today().Month;
                 tarjeta.UsosEsteMes = 0;
             }
 

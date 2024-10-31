@@ -218,11 +218,31 @@ namespace TestTPBoleto2
         }
 
         [Test]
+        public void LimitesFranquiciasTest()
+        {
+            TarjetaFranquiciaMedia.MaximosBoletosPorDia = int.MaxValue;
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 24; j++)
+                {
+                    colectivo.reloj = new TiempoFalso(new DateTime(2024, 10, 21 + i, j, 0, 0));
+                    tarjetaMedia.Saldo = Colectivo.PrecioBoleto;
+                    Boleto? boleto = colectivo.pagarCon(tarjetaMedia);
+                    if (i < 5 && j >= 6 && j <= 22)
+                    {
+                        Assert.That(tarjetaMedia.Saldo, Is.EqualTo(Colectivo.PrecioBoleto - Colectivo.MedioPrecioBoleto));
+                    } else
+                    {
+                        Assert.That(tarjetaMedia.Saldo, Is.EqualTo(0));
+                    }
+                }
+            }
+        }
+
+        [Test]
         public void Test1()
         {
             Assert.Pass();
         }
-
-
     }
 }
