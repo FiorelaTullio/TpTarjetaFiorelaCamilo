@@ -5,13 +5,15 @@ namespace TestTPBoleto2
 {
     public class TarjetaTest
     {
+        // Declaración de variables de tarjetas y colectivos.
         Tarjeta tarjeta;
         TarjetaFranquciaCompleta tarjetaCompleta;
         TarjetaFranquiciaMedia tarjetaMedia;
 
-
         Colectivo colectivo;
         ColectivoInterurbano interurbano;
+
+        // Configuración de tarjetas y colectivos.
         [SetUp]
         public void Setup()
         {
@@ -22,6 +24,7 @@ namespace TestTPBoleto2
             interurbano = new ColectivoInterurbano("146 Negro");
         }
 
+        // Test para verificar la correcta acreditación de la carga de la tarjeta.
         [Test]
         [TestCase(2000)]
         [TestCase(3000)]
@@ -36,7 +39,7 @@ namespace TestTPBoleto2
             Assert.That(tarjeta.CargarAcreditar(c), Is.EqualTo(true));
 
         }
-
+        // Pago con saldo en la tarjeta.
         [Test]
         [TestCase(1000)]
         [TestCase(1500)]
@@ -46,6 +49,7 @@ namespace TestTPBoleto2
             Assert.NotNull(colectivo.pagarCon(tarjeta));
         }
 
+        // Pago sin saldo en la tarjeta.
         [Test]
         [TestCase(0)]
         [TestCase(-500)]
@@ -55,6 +59,7 @@ namespace TestTPBoleto2
             Assert.IsNull(colectivo.pagarCon(tarjeta));
         }
 
+        // Chequea que se descuente el precio del boleto del saldo de la tarjeta normal (sin beneficios).
         [Test]
         [TestCase(600)]
         [TestCase(700)]
@@ -69,6 +74,7 @@ namespace TestTPBoleto2
 
         }
 
+        // Chequea que se descuente el precio del medio boleto del saldo de la tarjeta media.
         [Test]
         [TestCase(460)]
         [TestCase(500)]
@@ -82,6 +88,7 @@ namespace TestTPBoleto2
             Assert.That(tarjetaMedia.Saldo, Is.EqualTo(saldoInicial - colectivo.MedioPrecioBoleto));
         }
 
+        // Chequea que se descuente el precio del boleto completo del saldo de la tarjeta completa. (franquicia completa)
         [Test]
         [TestCase(0)]
         [TestCase(500)]
@@ -94,6 +101,8 @@ namespace TestTPBoleto2
             Assert.NotNull(colectivo.pagarCon(tarjetaCompleta));
         }
 
+        // Chequea que al pagar con una tarjeta de tipo normal (sin beneficios),
+        // las características del boleto sean del mismo tipo (normal).
         [Test]
         public void probarBoletoNormal()
         {
@@ -103,6 +112,8 @@ namespace TestTPBoleto2
             Assert.That(boleto.SacadoCon, Is.EqualTo(tarjeta.GetType().Name));
         }
 
+        // Chequea que al pagar con una tarjeta de tipo franquicia media,
+        // las características del boleto sean del mismo tipo (medio boleto). 
         [Test]
         public void probarBoletoMedio()
         {
@@ -112,6 +123,8 @@ namespace TestTPBoleto2
             Assert.That(boleto.SacadoCon, Is.EqualTo(tarjetaMedia.GetType().Name));
         }
 
+        // Chequea que al pagar con una tarjeta de tipo franquicia completa,
+        // las características del boleto sean del mismo tipo (boleto completo).
         [Test]
         public void probarBoletoCompleto()
         {
@@ -121,7 +134,8 @@ namespace TestTPBoleto2
             Assert.That(boleto.SacadoCon, Is.EqualTo(tarjetaCompleta.GetType().Name));
         }
 
-
+        // Chequea que no se deja marcar el medio boleto en un intervalo menor
+        // a 5 minutos.
         [Test]
         public void IntervaloMedioBoletoTest()
         {
@@ -131,6 +145,7 @@ namespace TestTPBoleto2
             Assert.Null(boleto2);
         }
 
+        // Chequea la cantidad válida de viajes con medio boleto por día.
         [Test]
         public void MedioBoletoCantidadTest()
         {
@@ -143,6 +158,8 @@ namespace TestTPBoleto2
             Assert.That(cargaAntes - cargaDespues, Is.EqualTo(colectivo.PrecioBoleto));
         }
 
+        // Chequea que una vez superado el limite de boletos gratuitos de franquicia completa por día,
+        // se cobre el monto completo.
         [Test]
         public void SoloDosBoletosGratuitosTest()
         {
@@ -163,6 +180,8 @@ namespace TestTPBoleto2
             Assert.That(tarjetaCompleta.Saldo, Is.EqualTo(saldoEsperado));
         }
 
+        // Chequea que el saldo que exceda el monto máximo permitido, 
+        // quede almacenado y pendiente de acreditación. 
         [Test]
         public void CargaLimitadaTest()
         {
@@ -177,6 +196,8 @@ namespace TestTPBoleto2
             Assert.That(tarjeta.pendienteDeAcreditacion, Is.EqualTo(i - Tarjeta.SaldoMaximo));
         }
 
+        // Verifica si hay saldo pendiente de acreditación y lo carga
+        // hasta el máximo permitido.
         [Test]
         public void AcreditarAlSacarTest()
         {
@@ -191,6 +212,7 @@ namespace TestTPBoleto2
             Assert.That(pendienteDespues, Is.LessThan(pendienteAntes));
         }
 
+        // Chequea que se apliquen los descuentos del boleto de uso frecuente.
         [Test]
         public void DescuentosTest()
         {
@@ -219,6 +241,8 @@ namespace TestTPBoleto2
             }
         }
 
+        // Chequea que todas las franquicias medias y completas solo puedean 
+        // utilizarse en la franja horaria permitida.
         [Test]
         public void LimitesFranquiciasTest()
         {
@@ -241,6 +265,8 @@ namespace TestTPBoleto2
             }
         }
 
+        // Chequea que al pagar con una línea interurbana normal (sin beneficios),
+        // el saldo descontado de la tarjeta sea el correcto. 
         [Test]
         [TestCase(3000)]
         [TestCase(4000)]
@@ -253,6 +279,8 @@ namespace TestTPBoleto2
             Assert.That(tarjeta.Saldo, Is.EqualTo(saldo - 2500f));
         }
 
+        // Chequea que al pagar con una línea interurbana franquicia media,
+        // el saldo descontado de la tarjeta sea el correcto. (medio boleto)
         [Test]
         [TestCase(3000)]
         [TestCase(4000)]
@@ -265,6 +293,8 @@ namespace TestTPBoleto2
             Assert.That(tarjetaMedia.Saldo, Is.EqualTo(saldo - 1250f));
         }
 
+        // Chequea que al pagar con una línea interurbana franquicia completa,
+        // el saldo descontado de la tarjeta sea el correcto. (boleto con descuento completo)
         [Test]
         [TestCase(3000)]
         [TestCase(4000)]
