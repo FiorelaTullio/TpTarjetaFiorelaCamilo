@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj": {}
+    "C:\\Users\\pc\\OneDrive\\Workspace\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj": {}
   },
   "projects": {
-    "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj": {
+    "C:\\Users\\pc\\OneDrive\\Workspace\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Workspace\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj",
         "projectName": "TpBoleto2",
-        "projectPath": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj",
-        "packagesPath": "C:\\Users\\fiore\\.nuget\\packages\\",
-        "outputPath": "D:\\Cosas_Compu_Vieja\\ACosas del Politécnico\\6 año IPS\\C#\\TpTarjetaFiorelaCamilo\\TpBoleto2\\obj\\",
+        "projectPath": "C:\\Users\\pc\\OneDrive\\Workspace\\TpTarjetaFiorelaCamilo\\TpBoleto2\\TpBoleto2.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pc\\OneDrive\\Workspace\\TpTarjetaFiorelaCamilo\\TpBoleto2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fiore\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -60,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
